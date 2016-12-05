@@ -1,6 +1,6 @@
 public class Bullet extends PolyObject {
     public Bullet(double speedXp, double speedYp, double X, double Y){
-        super(new double[]{0, 1, 0, -1}, new double[]{1, 0, -1, 0}, new double[]{0,0}, X, Y);
+        super(new double[]{0, 2, 0, -2}, new double[]{2, 0, -2, 0}, new double[]{0,0}, X, Y);
         speedX = speedXp;
         speedY = speedYp;
     }
