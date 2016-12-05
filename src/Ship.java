@@ -1,7 +1,6 @@
 import java.util.List;
 
 public class Ship extends PolyObject{
-    public double facingAngle;
     public boolean rotateLeft = false;
     public boolean rotateRight = false;
     public boolean accelerate = false;
@@ -23,23 +22,6 @@ public class Ship extends PolyObject{
         super(new double[]{24, 32, 28, 20, 16}, new double[]{0, 20, 16, 16, 20}, new double[]{24, 10}, 250, 250);
         facingAngle = -90;
         bullets = bulletsp;
-    }
-
-    public void rotate(double angle){
-        facingAngle += angle;
-        facingAngle %= 360;
-        angle = Math.toRadians(angle);
-        double[] newX = new double[5];
-        double[] newY = new double[5];
-        for(int i=0;i<xPoints.length;i++){
-            double x = xPoints[i] - center[0];
-            double y = yPoints[i] - center[1];
-            newX[i] = x*Math.cos(angle) - y*Math.sin(angle) + center[0];
-            newY[i] = y*Math.cos(angle) + x*Math.sin(angle) + center[1];
-        }
-        xPoints = newX;
-        yPoints = newY;
-        make();
     }
 
     public void move(double x, double y){

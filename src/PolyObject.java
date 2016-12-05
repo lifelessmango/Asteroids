@@ -6,11 +6,14 @@ public class PolyObject {
     public double[] yPoints;
     public double[] center;
 
+    public double facingAngle;
+
     public double speedX = 0;
     public double speedY = 0;
+    public double rotationSpeed = 0;
 
-    public static double xBound = 500;
-    public static double yBound = 500;
+    public static double xBound = 1920;
+    public static double yBound = 1080;
 
     public PolyObject(double[] xPointsp, double[] yPointsp, double[] centerp, double X, double Y){
         xPoints = xPointsp;
@@ -30,6 +33,23 @@ public class PolyObject {
         make();
     }
 
+    public void rotate(double angle){
+        facingAngle += angle;
+        facingAngle %= 360;
+        angle = Math.toRadians(angle);
+        double[] newX = new double[xPoints.length];
+        double[] newY = new double[xPoints.length];
+        for(int i=0;i<xPoints.length;i++){
+            double x = xPoints[i] - center[0];
+            double y = yPoints[i] - center[1];
+            newX[i] = x*Math.cos(angle) - y*Math.sin(angle) + center[0];
+            newY[i] = y*Math.cos(angle) + x*Math.sin(angle) + center[1];
+        }
+        xPoints = newX;
+        yPoints = newY;
+        make();
+    }
+
     public void make(){
         polygon = new Polygon();
         for(int i=0;i<xPoints.length;i++){
@@ -39,6 +59,7 @@ public class PolyObject {
 
     public void tick(){
         move(speedX, speedY);
+        rotate(rotationSpeed);
     }
 
 }
