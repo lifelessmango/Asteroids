@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Random;
 
 public class Asteroids extends Applet implements Runnable, KeyListener, ActionListener{
+    public static int windowWidth = 1920;
+    public static int windowHeight = 1080;
+
     public Thread thread;
 
     Container buttonContainer = new Container();
@@ -59,7 +62,8 @@ public class Asteroids extends Applet implements Runnable, KeyListener, ActionLi
         random = new Random();
         random.setSeed(System.currentTimeMillis());
 
-        buffer = createImage(500, 500);
+        setSize(windowWidth, windowHeight);
+        buffer = createImage(windowWidth, windowHeight);
         bufferGraphics = buffer.getGraphics();
 
         addKeyListener(this);
@@ -301,7 +305,7 @@ public class Asteroids extends Applet implements Runnable, KeyListener, ActionLi
                     difficultyName = "Hard";
                     break;
             }
-            bufferGraphics.drawString("Difficulty: " + difficultyName, 200, 100);
+            bufferGraphics.drawString("Difficulty: " + difficultyName, windowWidth/2 - 50, 100);
             graphics.drawImage(buffer, 0, 0, this);
             return;
         }
@@ -325,6 +329,10 @@ public class Asteroids extends Applet implements Runnable, KeyListener, ActionLi
         bufferGraphics.drawString("Lives: " + ship.lives, 0, 10);
 
         graphics.drawImage(buffer, 0, 0, this);
+    }
+
+    public void update(Graphics graphics){
+        paint(graphics);
     }
 
     public void keyReleased(KeyEvent event){
