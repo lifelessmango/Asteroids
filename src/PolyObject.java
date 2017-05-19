@@ -12,8 +12,8 @@ public class PolyObject {
     public double speedY = 0;
     public double rotationSpeed = 0;
 
-    public static double xBound = 1920;
-    public static double yBound = 1080;
+    public static double xBound = Asteroids.windowWidth;
+    public static double yBound = Asteroids.windowHeight;
 
     public PolyObject(double[] xPointsp, double[] yPointsp, double[] centerp, double X, double Y){
         xPoints = xPointsp;

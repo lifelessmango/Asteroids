@@ -66,6 +66,12 @@ public class Asteroids extends Applet implements Runnable, KeyListener, ActionLi
         buffer = createImage(windowWidth, windowHeight);
         bufferGraphics = buffer.getGraphics();
 
+        Font buttonFont = new Font("Helvetica", Font.PLAIN, 30);
+        easyDifficulty.setFont(buttonFont);
+        mediumDifficulty.setFont(buttonFont);
+        hardDifficulty.setFont(buttonFont);
+        startButton.setFont(buttonFont);
+
         addKeyListener(this);
         easyDifficulty.addActionListener(this);
         mediumDifficulty.addActionListener(this);
@@ -282,12 +288,15 @@ public class Asteroids extends Applet implements Runnable, KeyListener, ActionLi
 
     public void paint(Graphics graphics){
         bufferGraphics.clearRect(0, 0, (int)PolyObject.xBound, (int)PolyObject.yBound);
-        bufferGraphics.setFont(new Font("Helvetica", Font.PLAIN, 12));
+        bufferGraphics.setColor(Color.BLACK);
+        bufferGraphics.fillRect(0, 0, windowWidth, windowHeight);
+        bufferGraphics.setColor(Color.WHITE);
+        bufferGraphics.setFont(new Font("Helvetica", Font.PLAIN, 25));
 
         if (gameover){
-            bufferGraphics.setFont(new Font("Helvetica", Font.PLAIN, 20));
+            bufferGraphics.setFont(new Font("Helvetica", Font.PLAIN, 72));
             bufferGraphics.drawString("Game Over! Score: " + score, 0, (int)(PolyObject.yBound/2));
-            bufferGraphics.drawString("Press Enter To Go To The Start Screen", 0, (int)(PolyObject.yBound/2)+20);
+            bufferGraphics.drawString("Press Enter To Go To The Start Screen", 0, (int)(PolyObject.yBound/2)+72);
             graphics.drawImage(buffer, 0, 0, this);
             return;
         }
@@ -305,7 +314,7 @@ public class Asteroids extends Applet implements Runnable, KeyListener, ActionLi
                     difficultyName = "Hard";
                     break;
             }
-            bufferGraphics.drawString("Difficulty: " + difficultyName, windowWidth/2 - 50, 100);
+            bufferGraphics.drawString("Difficulty: " + difficultyName, windowWidth/2 - 100, 150);
             graphics.drawImage(buffer, 0, 0, this);
             return;
         }
@@ -325,8 +334,8 @@ public class Asteroids extends Applet implements Runnable, KeyListener, ActionLi
             bufferGraphics.drawPolygon(asteroid.polygon);
         }
 
-        bufferGraphics.drawString(""+score, (int)(PolyObject.xBound/2), 10);
-        bufferGraphics.drawString("Lives: " + ship.lives, 0, 10);
+        bufferGraphics.drawString(""+score, (int)(PolyObject.xBound/2), 20);
+        bufferGraphics.drawString("Lives: " + ship.lives, 0, 20);
 
         graphics.drawImage(buffer, 0, 0, this);
     }
