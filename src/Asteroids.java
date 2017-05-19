@@ -321,10 +321,12 @@ public class Asteroids extends Applet implements Runnable, KeyListener, ActionLi
 
         if (ship.invulnerability>0){
             if (ship.invulnerability%50 < 25){
+                bufferGraphics.fillPolygon(ship.polygon);
+            } else {
                 bufferGraphics.drawPolygon(ship.polygon);
             }
         } else {
-            bufferGraphics.drawPolygon(ship.polygon);
+            bufferGraphics.fillPolygon(ship.polygon);
         }
 
         for (Bullet bullet: bullets){
